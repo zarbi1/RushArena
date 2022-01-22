@@ -51,7 +51,7 @@ public class PlayerInputScript : MonoBehaviour
         }
         
         
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             isSpacePressed = true;
         }
