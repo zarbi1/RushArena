@@ -8,7 +8,7 @@ using UnityEngine;
 //=================================================
 public class PlayerScript : MonoBehaviour
 {
-    //Store a reference to all the sub player scripts
+    //référnces aux autres scripts du joueur 
     [SerializeField]
     internal PlayerInputScript inputScript;
 
@@ -17,12 +17,23 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     internal PlayerCollisionScript collisionScript;
+
+    //variables de mouvement du joueur
+    [SerializeField]
+    internal float playerSpeed = 0;
+    [SerializeField]
+    internal float jumpForce = 0;
+    [SerializeField] 
+    internal float gravityForce = 1;
+
     
-    
+    internal CharacterController characterController;
+
     // Start is called before the first frame update
     void Start()
     {
         print("Main PlayerScript Starting");
+        characterController = GetComponent<CharacterController>();
     }
 
 }
