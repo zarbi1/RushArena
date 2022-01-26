@@ -25,6 +25,10 @@ public class PlayerScript : MonoBehaviour
     internal float jumpForce = 0;
     [SerializeField] 
     internal float gravityForce = 1;
+    [SerializeField]
+    internal float airControl = 1;
+    [SerializeField] 
+    internal float fastFallSpeed = 1;
     
     
     //variables de collision

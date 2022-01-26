@@ -665,9 +665,11 @@ MonoBehaviour:
   inputScript: {fileID: 1808260515}
   movementScript: {fileID: 1808260516}
   collisionScript: {fileID: 1808260514}
-  playerSpeed: 25
-  jumpForce: 45
-  gravityForce: 0.05
+  playerSpeed: 20
+  jumpForce: 35
+  gravityForce: 0.03
+  airControl: 0.8
+  fastFallSpeed: 3.3
   groundCheck: {fileID: 932296441}
   ground:
     serializedVersion: 2
@@ -884,7 +886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946240613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.92, y: 9.92, z: -20.63}
+  m_LocalPosition: {x: 27.44, y: 9.92, z: -22.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

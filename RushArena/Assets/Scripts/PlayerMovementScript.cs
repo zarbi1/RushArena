@@ -23,16 +23,16 @@ public class PlayerMovementScript : MonoBehaviour
     {
 
         moveDirection = new Vector3(moveDirection.x, moveDirection.y, 0);
-        
-        
-        
+        bool grounded = playerScript.collisionScript.IsGrounded();
+
+
         if (playerScript.inputScript.isRightPressed)
         {
-            MovePlayerRight();
+            MovePlayerRight(grounded);
         }
         else if (playerScript.inputScript.isLeftPressed)
         {
-            MovePlayerLeft();
+            MovePlayerLeft(grounded);
         }
         else
         {
@@ -45,7 +45,7 @@ public class PlayerMovementScript : MonoBehaviour
              * Si le joueur est au sol on le laisse sauter et on réinitialise le nb de saut en +
              * sinon on le fait sauter si il lui reste un saut 
              */
-            if (playerScript.collisionScript.IsGrounded())
+            if (grounded)
             {
                 Jump();
                 extraJumps = 1;
@@ -56,22 +56,50 @@ public class PlayerMovementScript : MonoBehaviour
                 extraJumps--;
             }
         }
-
+        
+        
+        
         //Time.deltaTime sert rendre le mouvement indépendant du framerate 
-        moveDirection.y += Physics.gravity.y  * playerScript.gravityForce; 
+
+        if (!grounded)
+        {
+            if (playerScript.inputScript.isDownPressed)
+            {
+                moveDirection.y += Physics.gravity.y  * playerScript.gravityForce * playerScript.fastFallSpeed;
+            }
+            else
+            {
+                moveDirection.y += Physics.gravity.y  * playerScript.gravityForce;
+            } 
+        }
+        
         playerScript.characterController.Move(moveDirection * Time.deltaTime);
     }
 
 
 
-    private void MovePlayerLeft()
+    private void MovePlayerLeft(bool grounded)
     {
-        moveDirection.x = -playerScript.playerSpeed;
+        if (grounded)
+        {
+            moveDirection.x = -playerScript.playerSpeed;
+        }
+        else
+        {
+            moveDirection.x = -playerScript.playerSpeed*playerScript.airControl;
+        }
     }
 
-    private void MovePlayerRight()
+    private void MovePlayerRight(bool grounded)
     {
-        moveDirection.x = playerScript.playerSpeed;
+        if (grounded)
+        {
+            moveDirection.x = playerScript.playerSpeed;
+        }
+        else
+        {
+            moveDirection.x = playerScript.playerSpeed*playerScript.airControl;
+        }    
     }  
 
     private void Jump()
