@@ -32,5 +32,20 @@ public class PlayerCollisionScript : MonoBehaviour
         return Physics.CheckSphere(playerScript.groundCheck.position, 0.1f, playerScript.ground);
     }
     
+    internal bool IsOnRamp()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 1.5f, playerScript.ground))
+        {
+ 
+            float angle = Vector3.Angle(hit.normal, Vector3.up);
+            Debug.Log("angle " + angle);
+        }
+
+        return false;
+
+    }
     
 }
