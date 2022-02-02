@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal PlayerInputScript inputScript;
 
+
     [SerializeField]
     internal PlayerMovementScript movementScript;
 
@@ -19,34 +20,38 @@ public class PlayerScript : MonoBehaviour
     internal PlayerCollisionScript collisionScript;
 
     //variables de mouvement du joueur
-    [SerializeField] 
+    [SerializeField]
     internal float playerSpeed = 0;
     [SerializeField]
     internal float jumpForce = 0;
-    [SerializeField] 
+    [SerializeField]
     internal float gravityForce = 1;
     [SerializeField]
     internal float airControl = 1;
-    [SerializeField] 
+    [SerializeField]
     internal float fastFallSpeed = 1;
-    
-    
+
+
     //variables de collision
-    [SerializeField] 
+    [SerializeField]
     internal Transform groundCheck;
-    [SerializeField] 
+    [SerializeField]
     internal LayerMask ground;
-    
-    
+
+
     internal CharacterController characterController;
     internal CapsuleCollider hitbox;
 
+
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         print("Main PlayerScript Starting");
         characterController = GetComponent<CharacterController>();
         hitbox = GetComponent<CapsuleCollider>();
+
     }
+    
 
 }

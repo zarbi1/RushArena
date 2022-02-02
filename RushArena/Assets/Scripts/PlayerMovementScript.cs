@@ -9,7 +9,8 @@ public class PlayerMovementScript : MonoBehaviour
     
     private Vector3 moveDirection;
     private int extraJumps;
-    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,15 +37,15 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else
         {
-           StopLateralMovement();
+            StopLateralMovement();
         }
-        
+
         if (playerScript.inputScript.isSpacePressed)
         {
             /*
-             * Si le joueur est au sol on le laisse sauter et on réinitialise le nb de saut en +
-             * sinon on le fait sauter si il lui reste un saut 
-             */
+                * Si le joueur est au sol on le laisse sauter et on réinitialise le nb de saut en +
+                * sinon on le fait sauter si il lui reste un saut 
+                */
             if (grounded)
             {
                 Jump();
@@ -56,24 +57,26 @@ public class PlayerMovementScript : MonoBehaviour
                 extraJumps--;
             }
         }
-        
-        
-        
+
+
+
         //Time.deltaTime sert rendre le mouvement indépendant du framerate 
 
         if (!grounded)
         {
             if (playerScript.inputScript.isDownPressed)
             {
-                moveDirection.y += Physics.gravity.y  * playerScript.gravityForce * playerScript.fastFallSpeed;
+                moveDirection.y += Physics.gravity.y * playerScript.gravityForce * playerScript.fastFallSpeed;
             }
             else
             {
-                moveDirection.y += Physics.gravity.y  * playerScript.gravityForce;
-            } 
+                moveDirection.y += Physics.gravity.y * playerScript.gravityForce;
+            }
         }
-        
+
         playerScript.characterController.Move(moveDirection * Time.deltaTime);
+        
+        
     }
 
 
