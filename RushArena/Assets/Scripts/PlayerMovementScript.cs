@@ -23,7 +23,7 @@ public class PlayerMovementScript : MonoBehaviour
     
     // Update is called once per frame
     
-    void Update()
+    public void UpdateMovement()
     {
         
         moveDirection = new Vector3(moveDirection.x, moveDirection.y, 0);

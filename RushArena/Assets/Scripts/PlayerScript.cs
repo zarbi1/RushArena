@@ -53,7 +53,15 @@ public class PlayerScript : MonoBehaviour
         print("Main PlayerScript Starting");
         characterController = GetComponent<CharacterController>();
         hitbox = GetComponent<CapsuleCollider>();
+        
     }
+
+    private void Update()
+    {
+        movementScript.UpdateMovement();
+    }
+
+    
     
 
 }
