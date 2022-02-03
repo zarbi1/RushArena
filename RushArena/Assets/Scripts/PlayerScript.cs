@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 
 //=================================================
 // The main player script
@@ -46,6 +46,9 @@ public class PlayerScript : MonoBehaviour
     internal CapsuleCollider hitbox;
 
 
+    PhotonView view;
+
+
 
     // Start is called before the first frame update
     private void Start()
@@ -53,15 +56,16 @@ public class PlayerScript : MonoBehaviour
         print("Main PlayerScript Starting");
         characterController = GetComponent<CharacterController>();
         hitbox = GetComponent<CapsuleCollider>();
+
+        view = GetComponent<PhotonView>();
         
     }
 
     private void Update()
     {
-        movementScript.UpdateMovement();
+        if (view.IsMine)
+        {
+            movementScript.UpdateMovement();
+        }
     }
-
-    
-    
-
 }
