@@ -30,6 +30,9 @@ public class PlayerScript : MonoBehaviour
     internal float airControl = 1;
     [SerializeField]
     internal float fastFallSpeed = 1;
+    [SerializeField] 
+    internal float slideSpeed = 1;
+    
 
 
     //variables de collision
@@ -50,7 +53,6 @@ public class PlayerScript : MonoBehaviour
         print("Main PlayerScript Starting");
         characterController = GetComponent<CharacterController>();
         hitbox = GetComponent<CapsuleCollider>();
-
     }
     
 

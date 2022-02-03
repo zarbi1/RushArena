@@ -9,6 +9,7 @@ public class PlayerMovementScript : MonoBehaviour
     
     private Vector3 moveDirection;
     private int extraJumps;
+    private float old_y;
 
 
 
@@ -16,17 +17,19 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         extraJumps = 1;
+        old_y = playerScript.groundCheck.position.y;
     }
 
     
     // Update is called once per frame
+    
     void Update()
     {
-
+        
         moveDirection = new Vector3(moveDirection.x, moveDirection.y, 0);
         bool grounded = playerScript.collisionScript.IsGrounded();
-
-
+        
+            
         if (playerScript.inputScript.isRightPressed)
         {
             MovePlayerRight(grounded);
@@ -39,7 +42,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             StopLateralMovement();
         }
-
+        
         if (playerScript.inputScript.isSpacePressed)
         {
             /*
@@ -75,18 +78,30 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         playerScript.characterController.Move(moveDirection * Time.deltaTime);
-        
+        old_y = playerScript.groundCheck.position.y;
         
     }
 
 
+    
+    /*
+     *  ---------------------------- Fonctions ------------------------
+     */
 
     private void MovePlayerLeft(bool grounded)
     {
         if (grounded)
-        {
-            moveDirection.x = -playerScript.playerSpeed;
+        {   
+            if (playerScript.inputScript.isDownPressed && playerScript.groundCheck.position.y < old_y)
+            {
+                moveDirection.x = -playerScript.playerSpeed * playerScript.slideSpeed;
+            }
+            else
+            {
+                moveDirection.x = -playerScript.playerSpeed;
+            }
         }
+        
         else
         {
             moveDirection.x = -playerScript.playerSpeed*playerScript.airControl;
@@ -97,7 +112,14 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (grounded)
         {
-            moveDirection.x = playerScript.playerSpeed;
+            if (playerScript.inputScript.isDownPressed && playerScript.groundCheck.position.y < old_y)
+            {
+                moveDirection.x = playerScript.playerSpeed * playerScript.slideSpeed;
+            }
+            else
+            {
+                moveDirection.x = playerScript.playerSpeed;
+            }
         }
         else
         {

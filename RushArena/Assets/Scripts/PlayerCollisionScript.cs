@@ -32,7 +32,11 @@ public class PlayerCollisionScript : MonoBehaviour
         return Physics.CheckSphere(playerScript.groundCheck.position, 0.1f, playerScript.ground);
     }
     
-    internal bool IsOnRamp()
+    
+    /**
+     * <summary>checks if player is on flat terrain</summary>
+     */
+    internal bool IsOnFlat()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;
@@ -42,10 +46,10 @@ public class PlayerCollisionScript : MonoBehaviour
  
             float angle = Vector3.Angle(hit.normal, Vector3.up);
             Debug.Log("angle " + angle);
+            return angle != 0;
         }
 
         return false;
-
     }
     
 }
