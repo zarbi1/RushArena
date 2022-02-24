@@ -24,6 +24,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     {
         //succeffully joined the lobby scene
         SceneManager.LoadScene("Lobby"); //load the lobby scene
-       // base.OnJoinedLobby();
+
+        // base.OnJoinedLobby();
     }
 }
