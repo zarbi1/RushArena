@@ -1481,6 +1481,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   GameStatus: {fileID: 350706863}
   player: {fileID: 0}
+  timer: {fileID: 193934462}
 --- !u!4 &193934461
 Transform:
   m_ObjectHideFlags: 0

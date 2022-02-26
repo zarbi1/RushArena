@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 public class GameControllerScript : MonoBehaviour
 {
 
@@ -13,9 +15,18 @@ public class GameControllerScript : MonoBehaviour
     private bool isGameEnded = false;
     private bool Ended = false;
 
+    public Timer timer;
+
     // Start is called before the first frame update
     public void Start()
     {
+        //wkaing up
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Scene Map (test)")
+        {
+            Debug.Log("hola");
+            timer.ManualWakeUp();
+        }
         //send a message
         StartCoroutine(DisplayMessage("Rush !"));
     }
@@ -24,6 +35,7 @@ public class GameControllerScript : MonoBehaviour
     {
         gameOverScreen.Setup(playerID);
     }
+
 
 
 
@@ -45,6 +57,9 @@ public class GameControllerScript : MonoBehaviour
             Debug.Log(players);
             foreach(var p in players)
             {
+                var id = PhotonNetwork.LocalPlayer.ActorNumber;
+
+                Debug.Log(id);
                 Debug.Log(p.transform.position); //all players coordinatesn here the game is stoped so we can compare the current player positionto the other one.
             }
         }
