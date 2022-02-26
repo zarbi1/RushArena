@@ -12,6 +12,9 @@ public class GameControllerScript : MonoBehaviour
     public GameObject player;
 
 
+    private Vector3 LocalPLayerPos;
+    private Vector3 OtherPlayerPos;
+
     private bool isGameEnded = false;
     private bool Ended = false;
 
@@ -58,19 +61,26 @@ public class GameControllerScript : MonoBehaviour
             Debug.Log(players);
             foreach(GameObject p in players)
             {
-                //var id = PhotonNetwork.LocalPlayer.ActorNumber;
                 //check if it's us
-
                 PhotonView viewPLayer = p.GetComponent<PhotonView>();
                 if (viewPLayer.IsMine)
                 {
-                    Debug.Log("MyPlayer Pos is: " + p.transform.position);
+                    LocalPLayerPos = p.transform.position;
                 }
+                else
+                {
+                    OtherPlayerPos = p.transform.position;
+                }
+            }
 
-                //PhotonNetwork.get pv = p.GetComponent(PhotonPlayer)();
-                   
-                
-                Debug.Log(p.transform.position); //all players coordinatesn here the game is stoped so we can compare the current player positionto the other one.
+            //now compare the two position and setup the win or lose
+            if(LocalPLayerPos.x > OtherPlayerPos.x) //current player has won the game
+            {
+                DisplayMessage("You WON");
+            }
+            else //current player has lost the game
+            {
+                DisplayMessage("You Lost"); 
             }
         }
     }
