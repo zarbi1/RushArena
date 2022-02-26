@@ -46,6 +46,7 @@ public class GameControllerScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    PhotonView view;
     void Update()
     {
         if (isGameEnded && !Ended) //check if the game has ended
@@ -55,11 +56,20 @@ public class GameControllerScript : MonoBehaviour
             //now check players position
             var players = GameObject.FindGameObjectsWithTag("Player");
             Debug.Log(players);
-            foreach(var p in players)
+            foreach(GameObject p in players)
             {
-                var id = PhotonNetwork.LocalPlayer.ActorNumber;
+                //var id = PhotonNetwork.LocalPlayer.ActorNumber;
+                //check if it's us
 
-                Debug.Log(id);
+                PhotonView viewPLayer = p.GetComponent<PhotonView>();
+                if (viewPLayer.IsMine)
+                {
+                    Debug.Log("MyPlayer Pos is: " + p.transform.position);
+                }
+
+                //PhotonNetwork.get pv = p.GetComponent(PhotonPlayer)();
+                   
+                
                 Debug.Log(p.transform.position); //all players coordinatesn here the game is stoped so we can compare the current player positionto the other one.
             }
         }
