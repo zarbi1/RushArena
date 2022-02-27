@@ -65,19 +65,19 @@ public class PlayerMovementScript : MonoBehaviour
 
         //Time.deltaTime sert rendre le mouvement indépendant du framerate 
 
-        if (!grounded)
-        {
-            if (playerScript.inputScript.isDownPressed)
-            {
-                moveDirection.y += Physics.gravity.y * playerScript.gravityForce * playerScript.fastFallSpeed;
-            }
-            else
-            {
-                moveDirection.y += Physics.gravity.y * playerScript.gravityForce;
-            }
-        }
+        // if (!grounded)
+        // {
+        //     if (playerScript.inputScript.isDownPressed)
+        //     {
+        //         moveDirection.y += Physics.gravity.y * playerScript.gravityForce * playerScript.fastFallSpeed;
+        //     }
+        //     else
+        //     {
+        //         moveDirection.y += Physics.gravity.y * playerScript.gravityForce;
+        //     }
+        // }
 
-        playerScript.characterController.Move(moveDirection * Time.deltaTime);
+        playerScript.rigidbody.MovePosition(moveDirection * Time.deltaTime);
         old_y = playerScript.groundCheck.position.y;
         
     }

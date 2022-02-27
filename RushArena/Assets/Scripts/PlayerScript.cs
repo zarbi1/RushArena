@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
     internal LayerMask ground;
 
 
-    internal CharacterController characterController;
+    internal Rigidbody rigidbody;
     internal CapsuleCollider hitbox;
 
 
@@ -54,7 +54,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         print("Main PlayerScript Starting");
-        characterController = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody>();
         hitbox = GetComponent<CapsuleCollider>();
 
         view = GetComponent<PhotonView>();
