@@ -14,6 +14,7 @@ public class PlayerInputScript : MonoBehaviour
     internal bool isRightPressed;
     internal bool isSpacePressed;
     internal bool isDownPressed;
+    internal int xInput = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,19 @@ public class PlayerInputScript : MonoBehaviour
         else
         {
             isDownPressed = false;
+        }
+        
+        if (isRightPressed == isLeftPressed)
+        {
+            xInput = 0;
+        }
+        else if (isRightPressed)
+        {
+            xInput = 1;
+        }
+        else 
+        {
+            xInput = -1;
         }
     }
 }

@@ -5,50 +5,28 @@ using UnityEngine;
 public class PlayerMovementScript : MonoBehaviour
 {
 
-    [SerializeField] PlayerScript playerScript;
+    [SerializeField] PlayerScript PS;  //PS = PlayerScript 
     
-    private Vector3 moveDirection;
     private int extraJumps;
-    private float old_y;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         extraJumps = 1;
-        old_y = playerScript.groundCheck.position.y;
     }
 
     
-    // Update is called once per frame
-    
     public void UpdateMovement()
     {
+        bool grounded = PS.collisionScript.IsGrounded();
         
-        moveDirection = new Vector3(moveDirection.x, moveDirection.y, 0);
-        bool grounded = playerScript.collisionScript.IsGrounded();
+        HorizontalMovement(grounded);
         
-            
-        if (playerScript.inputScript.isRightPressed)
-        {
-            MovePlayerRight(grounded);
-        }
-        else if (playerScript.inputScript.isLeftPressed)
-        {
-            MovePlayerLeft(grounded);
-        }
-        else
-        {
-            StopLateralMovement();
-        }
-        
-        if (playerScript.inputScript.isSpacePressed)
+        if (PS.inputScript.isSpacePressed)
         {
             /*
-                * Si le joueur est au sol on le laisse sauter et on réinitialise le nb de saut en +
-                * sinon on le fait sauter si il lui reste un saut 
-                */
+            * Si le joueur est au sol on le laisse sauter et on réinitialise le nb de saut en +
+            * sinon on le fait sauter si il lui reste un saut 
+            */
             if (grounded)
             {
                 Jump();
@@ -61,87 +39,81 @@ public class PlayerMovementScript : MonoBehaviour
             }
         }
 
-
-
-        //Time.deltaTime sert rendre le mouvement indépendant du framerate 
-
-        // if (!grounded)
-        // {
-        //     if (playerScript.inputScript.isDownPressed)
-        //     {
-        //         moveDirection.y += Physics.gravity.y * playerScript.gravityForce * playerScript.fastFallSpeed;
-        //     }
-        //     else
-        //     {
-        //         moveDirection.y += Physics.gravity.y * playerScript.gravityForce;
-        //     }
-        // }
-
-        playerScript.rigidbody.MovePosition(moveDirection * Time.deltaTime);
-        old_y = playerScript.groundCheck.position.y;
         
     }
 
 
+
+    #region Fonctions de mouvement 
     
-    /*
-     *  ---------------------------- Fonctions ------------------------
-     */
-
-    private void MovePlayerLeft(bool grounded)
+    private void HorizontalMovement(bool grounded)//,float lerpAmount)
     {
-        if (grounded)
-        {   
-            if (playerScript.inputScript.isDownPressed && playerScript.groundCheck.position.y < old_y)
+        float targetSpeed = PS.inputScript.xInput * PS.maxSpeed;
+        float speedDif = targetSpeed - PS.RB.velocity.x;
+        
+        
+        #region gestion de l'acceleration 
+        
+        float accel;
+        
+        if ((PS.RB.velocity.x > targetSpeed && targetSpeed > 0.01f) || (PS.RB.velocity.x < targetSpeed && targetSpeed < -0.01f))
+        {
+            accel = 0; // ==> pas d'accélération si on va déjà à la vitesse max 
+        }
+        else {
+
+            accel = (Mathf.Abs(targetSpeed) > 0.01f) ? PS.acceleration : PS.deceleration;
+        
+            if (!grounded)
             {
-                moveDirection.x = -playerScript.playerSpeed * playerScript.slideSpeed;
-            }
-            else
-            {
-                moveDirection.x = -playerScript.playerSpeed;
+                accel *= PS.airControl;
             }
         }
         
-        else
-        {
-            moveDirection.x = -playerScript.playerSpeed*playerScript.airControl;
-        }
-    }
+        #endregion
+        
+        #region gestion vélocité
 
-    private void MovePlayerRight(bool grounded)
-    {
-        if (grounded)
+        float velPower;
+        
+        //on applique des vélocités différentes en fonction des situations  
+        
+        if (Mathf.Abs(targetSpeed) < 0.01f)//targetspeed ≈ 0 ==> on applique la vélocité de stoppage  
         {
-            if (playerScript.inputScript.isDownPressed && playerScript.groundCheck.position.y < old_y)
-            {
-                moveDirection.x = playerScript.playerSpeed * playerScript.slideSpeed;
-            }
-            else
-            {
-                moveDirection.x = playerScript.playerSpeed;
-            }
+            velPower = PS.stopPower; 
         }
-        else
+        else if (Mathf.Abs(PS.RB.velocity.x) > 0 && (Mathf.Sign(targetSpeed) != Mathf.Sign(PS.RB.velocity.x)))
+            //ici on gère le cas où on veut changer de direction 
         {
-            moveDirection.x = playerScript.playerSpeed*playerScript.airControl;
-        }    
-    }  
+            velPower = PS.turnPower;
+        }
+        else // sinon cas où on continue dans la mm direction 
+        {
+            velPower = PS.accelPower;
+        }
+        
+        #endregion
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accel, velPower) * Mathf.Sign(speedDif);
+        //movement = Mathf.Lerp(PS.RB.velocity.x, movement, lerpAmount); 
+        // lerp sert à fluidifier les changements de vitesse surtout par ex en fin de dash
+        
+        PS.RB.AddForce(movement * Vector3.right); //vector3.right = vecteur unitaire horizontal 
+    }
+    
+    
 
     private void Jump()
     {
-        moveDirection.y = playerScript.jumpForce;
+        float force = PS.jumpForce;
+        if (PS.RB.velocity.y < 0)
+            force -= PS.RB.velocity.y;
+
+        PS.RB.AddForce(Vector3.up * force, ForceMode.Impulse);
     }
-    
-    
-     //Cette fonction sert à ce que le joueur ne continue pas son mouvement quand on presse
-     //aucune touche
-     private void StopLateralMovement()
-     {
-         moveDirection = new Vector3(0, moveDirection.y,0);
-     }
+
 }
 
-
-
+    #endregion
 
 

@@ -21,17 +21,34 @@ public class PlayerScript : MonoBehaviour
 
     //variables de mouvement du joueur
     [SerializeField]
-    internal float playerSpeed = 0;
-    [SerializeField]
-    internal float jumpForce = 0;
-    [SerializeField]
-    internal float gravityForce = 1;
-    [SerializeField]
-    internal float airControl = 1;
+    internal float maxSpeed = 0;
     [SerializeField]
     internal float fastFallSpeed = 1;
     [SerializeField] 
     internal float slideSpeed = 1;
+
+
+    [SerializeField]
+    internal float jumpForce = 0;
+    [SerializeField]
+    internal float gravityForce = 1;
+    
+    [SerializeField]
+    internal float airControl = 1;
+    
+    
+    [SerializeField]
+    internal float accelPower = 1;
+    [SerializeField]
+    internal float turnPower = 1;
+    [SerializeField]
+    internal float stopPower = 0;
+    [SerializeField]
+    internal float acceleration = 1;
+    [SerializeField]
+    internal float deceleration = 1;
+    
+    
     
 
 
@@ -42,7 +59,7 @@ public class PlayerScript : MonoBehaviour
     internal LayerMask ground;
 
 
-    internal Rigidbody rigidbody;
+    internal Rigidbody RB;
     internal CapsuleCollider hitbox;
 
 
@@ -51,21 +68,21 @@ public class PlayerScript : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void Start()
+    private void Start() 
     {
         print("Main PlayerScript Starting");
-        rigidbody = GetComponent<Rigidbody>();
+        RB = GetComponent<Rigidbody>();
         hitbox = GetComponent<CapsuleCollider>();
 
         view = GetComponent<PhotonView>();
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (view.IsMine)
-        {
+        //if (view.IsMine)
+        //{
             movementScript.UpdateMovement();
-        }
+        //}
     }
 }
