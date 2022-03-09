@@ -19,13 +19,17 @@ public class PlayerMovementScript : MonoBehaviour
     public void UpdateMovement()
     {
         grounded = PS.collisionScript.IsGrounded();
+
+        if (grounded)
+        {
+            extraJumps = 1;
+        }
         
         if (PS.inputScript.isSpaceDown) 
         {  
             if (grounded)
             {
                 Jump();
-                extraJumps = 1;
             }
             else if (extraJumps >= 1)
             {
@@ -44,7 +48,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     public void FixedUpdateMovement()
     {
-        Debug.Log(PS.RB.velocity.y);
+        Debug.Log(extraJumps);
         HorizontalMovement();
     }
 
