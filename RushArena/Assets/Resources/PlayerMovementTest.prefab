@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 1280888506279799209}
   - component: {fileID: 5448271981208629085}
   - component: {fileID: 851038764631257742}
+  - component: {fileID: -443964772587937275}
+  - component: {fileID: 7288555127496165498}
   m_Layer: 0
   m_Name: PlayerMovementTest
   m_TagString: Player
@@ -117,25 +119,25 @@ MonoBehaviour:
   inputScript: {fileID: 1280888506279799209}
   movementScript: {fileID: 5448271981208629085}
   collisionScript: {fileID: 8038703926891157425}
-  maxSpeed: 0
-  fastFallSpeed: 3.3
-  fallSpeed: 1
+  maxSpeed: 60
+  fastFallSpeed: 0.3
+  fallSpeed: 3
   slideSpeed: 1
   airControl: 0.8
-  dashSpeed: 1
-  jumpForce: 35
+  dashSpeed: 30
+  jumpForce: 20
   accelPower: 1
-  turnPower: 1
-  stopPower: 0
-  acceleration: 1
-  deceleration: 1
+  turnPower: 1.2
+  stopPower: 1.3
+  acceleration: 1.7
+  deceleration: 1.52
   groundCheck: {fileID: 0}
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   jumpDelay: 1
   dashLength: 0.2
-  dashBufferLength: 0.2
+  dashBufferLength: 1
 --- !u!114 &8038703926891157425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +193,62 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 72
   m_CollisionDetection: 0
+--- !u!114 &-443964772587937275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338246372257984652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7288555127496165498}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7288555127496165498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338246372257984652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &9073758010356347826
 GameObject:
   m_ObjectHideFlags: 0

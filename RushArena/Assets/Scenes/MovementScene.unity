@@ -590,6 +590,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -443964772587937275, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: maxSpeed
       value: 60

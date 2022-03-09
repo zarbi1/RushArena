@@ -150,16 +150,25 @@ MonoBehaviour:
   inputScript: {fileID: 461265480973388653}
   movementScript: {fileID: 461265480973388650}
   collisionScript: {fileID: 461265480973388652}
-  playerSpeed: 20
-  jumpForce: 35
-  gravityForce: 0.03
-  airControl: 0.8
+  maxSpeed: 0
   fastFallSpeed: 3.3
+  fallSpeed: 1
   slideSpeed: 1
+  airControl: 0.8
+  dashSpeed: 1
+  jumpForce: 35
+  accelPower: 1
+  turnPower: 1
+  stopPower: 0
+  acceleration: 1
+  deceleration: 1
   groundCheck: {fileID: 461265479701880887}
   ground:
     serializedVersion: 2
     m_Bits: 64
+  jumpDelay: 1
+  dashLength: 0.2
+  dashBufferLength: 0.2
 --- !u!114 &461265480973388650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145238b21472bf84590baf8e9724560d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 461265480973388627}
+  PS: {fileID: 0}
 --- !u!114 &461265480973388653
 MonoBehaviour:
   m_ObjectHideFlags: 0
