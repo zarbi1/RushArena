@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 851038764631257742}
   m_Layer: 0
   m_Name: PlayerMovementTest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,16 +117,25 @@ MonoBehaviour:
   inputScript: {fileID: 1280888506279799209}
   movementScript: {fileID: 5448271981208629085}
   collisionScript: {fileID: 8038703926891157425}
-  playerSpeed: 20
-  jumpForce: 35
-  gravityForce: 0.03
-  airControl: 0.8
+  maxSpeed: 0
   fastFallSpeed: 3.3
+  fallSpeed: 1
   slideSpeed: 1
+  airControl: 0.8
+  dashSpeed: 1
+  jumpForce: 35
+  accelPower: 1
+  turnPower: 1
+  stopPower: 0
+  acceleration: 1
+  deceleration: 1
   groundCheck: {fileID: 0}
   ground:
     serializedVersion: 2
     m_Bits: 0
+  jumpDelay: 1
+  dashLength: 0.2
+  dashBufferLength: 0.2
 --- !u!114 &8038703926891157425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145238b21472bf84590baf8e9724560d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 0}
+  PS: {fileID: 0}
 --- !u!54 &851038764631257742
 Rigidbody:
   m_ObjectHideFlags: 0

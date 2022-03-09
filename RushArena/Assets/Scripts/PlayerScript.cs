@@ -87,17 +87,17 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (view.IsMine)
-        //{
+        if (view.IsMine)
+        {
             movementScript.FixedUpdateMovement();
-        //}
+        }
     }
     
     private void Update()
     {
-        //if (view.IsMine)
-        //{
+        if (view.IsMine)
+        {
         movementScript.UpdateMovement();
-        //}
+        }
     }
 }
