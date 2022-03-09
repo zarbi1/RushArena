@@ -8,35 +8,36 @@ using Photon.Pun;
 //=================================================
 public class PlayerScript : MonoBehaviour
 {
-    //référnces aux autres scripts du joueur 
+    #region Scripts
     [SerializeField]
     internal PlayerInputScript inputScript;
-
-
     [SerializeField]
     internal PlayerMovementScript movementScript;
-
     [SerializeField]
     internal PlayerCollisionScript collisionScript;
+    #endregion
 
-    //variables de mouvement du joueur
+    #region movement variables
     [SerializeField]
     internal float maxSpeed = 0;
     [SerializeField]
     internal float fastFallSpeed = 1;
+    [SerializeField]
+    internal float fallSpeed = 1;
     [SerializeField] 
     internal float slideSpeed = 1;
+    [SerializeField]
+    internal float airControl = 1;
+    #endregion
 
-
+    #region Forces 
     [SerializeField]
     internal float jumpForce = 0;
     [SerializeField]
     internal float gravityForce = 1;
-    
-    [SerializeField]
-    internal float airControl = 1;
-    
-    
+    #endregion
+
+    #region transition variables 
     [SerializeField]
     internal float accelPower = 1;
     [SerializeField]
@@ -47,27 +48,31 @@ public class PlayerScript : MonoBehaviour
     internal float acceleration = 1;
     [SerializeField]
     internal float deceleration = 1;
-    
-    
-    
+    #endregion
 
-
-    //variables de collision
+    #region collision checks
     [SerializeField]
     internal Transform groundCheck;
     [SerializeField]
     internal LayerMask ground;
+    #endregion
 
-
+    #region player components
     internal Rigidbody RB;
     internal CapsuleCollider hitbox;
+    #endregion
 
-
+    #region network variables
     PhotonView view;
+    #endregion
 
+    #region Timers 
+    [SerializeField]
+    internal float jumpDelay = 1;
+    [SerializeField]
+    internal float maxJumpTime = 1;
+    #endregion
 
-
-    // Start is called before the first frame update
     private void Start() 
     {
         print("Main PlayerScript Starting");
@@ -82,7 +87,15 @@ public class PlayerScript : MonoBehaviour
     {
         //if (view.IsMine)
         //{
-            movementScript.UpdateMovement();
+            movementScript.FixedUpdateMovement();
+        //}
+    }
+    
+    private void Update()
+    {
+        //if (view.IsMine)
+        //{
+        movementScript.UpdateMovement();
         //}
     }
 }

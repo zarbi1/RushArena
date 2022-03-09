@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,25 +9,19 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] PlayerScript PS;  //PS = PlayerScript 
     
     private int extraJumps;
-
+    private bool grounded;
+    
     void Start()
     {
         extraJumps = 1;
     }
 
-    
     public void UpdateMovement()
     {
-        bool grounded = PS.collisionScript.IsGrounded();
+        grounded = PS.collisionScript.IsGrounded();
         
-        HorizontalMovement(grounded);
-        
-        if (PS.inputScript.isSpacePressed)
-        {
-            /*
-            * Si le joueur est au sol on le laisse sauter et on réinitialise le nb de saut en +
-            * sinon on le fait sauter si il lui reste un saut 
-            */
+        if (PS.inputScript.isSpaceDown) 
+        {  
             if (grounded)
             {
                 Jump();
@@ -39,14 +34,25 @@ public class PlayerMovementScript : MonoBehaviour
             }
         }
 
+        if (PS.RB.velocity.y < 0)
+        {
+            PS.RB.AddForce(Vector3.down * PS.fallSpeed,ForceMode.Acceleration);
+        }
         
     }
 
 
+    public void FixedUpdateMovement()
+    {
+        Debug.Log(PS.RB.velocity.y);
+        HorizontalMovement();
+    }
 
-    #region Fonctions de mouvement 
+
+
+    #region Fonctions 
     
-    private void HorizontalMovement(bool grounded)//,float lerpAmount)
+    private void HorizontalMovement()//,float lerpAmount)
     {
         float targetSpeed = PS.inputScript.xInput * PS.maxSpeed;
         float speedDif = targetSpeed - PS.RB.velocity.x;
@@ -100,20 +106,24 @@ public class PlayerMovementScript : MonoBehaviour
         
         PS.RB.AddForce(movement * Vector3.right); //vector3.right = vecteur unitaire horizontal 
     }
-    
-    
 
+
+    #region Jump
+    
     private void Jump()
     {
+        
         float force = PS.jumpForce;
-        if (PS.RB.velocity.y < 0)
+        if (PS.RB.velocity.y < 0) 
             force -= PS.RB.velocity.y;
-
+            
         PS.RB.AddForce(Vector3.up * force, ForceMode.Impulse);
     }
-
+    
+    
+    #endregion
 }
 
-    #endregion
+   #endregion
 
 

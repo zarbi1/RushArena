@@ -6,12 +6,13 @@ public class PlayerInputScript : MonoBehaviour
 {
     
     [SerializeField]
-    
     PlayerScript playerScript;
     
     
     internal bool isLeftPressed;
     internal bool isRightPressed;
+    internal bool isSpaceDown;
+    internal bool isSpaceUp;
     internal bool isSpacePressed;
     internal bool isDownPressed;
     internal int xInput = 0;
@@ -26,50 +27,26 @@ public class PlayerInputScript : MonoBehaviour
     void Update()
     {
         
-        
         /*
          * Pour chaque touche on check si elle est pressée
          * si elle ne l'est pas on remet à false 
          */
+
+        #region Récup des inputs
         
-        if(Input.GetKey(KeyCode.LeftArrow))
-        {
-            isLeftPressed = true;
-        }
-        else
-        {
-            isLeftPressed = false;
-        }
+        isLeftPressed = Input.GetKey(KeyCode.LeftArrow);
         
+        isRightPressed = Input.GetKey(KeyCode.RightArrow);
         
-        if(Input.GetKey(KeyCode.RightArrow))
-        {
-            isRightPressed = true;
-        }
-        else
-        {
-            isRightPressed = false;
-        }
+        isSpaceDown = Input.GetKeyDown(KeyCode.Space);
         
+        isSpaceUp = Input.GetKeyUp(KeyCode.Space);
+
+        isSpacePressed = Input.GetKey(KeyCode.Space);
+
+        isDownPressed = Input.GetKey(KeyCode.DownArrow);
         
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            isSpacePressed = true;
-        }
-        else
-        {
-            isSpacePressed = false;
-        }
-        
-        
-        if(Input.GetKey(KeyCode.DownArrow))
-        {
-            isDownPressed = true;
-        }
-        else
-        {
-            isDownPressed = false;
-        }
+        #endregion
         
         if (isRightPressed == isLeftPressed)
         {
