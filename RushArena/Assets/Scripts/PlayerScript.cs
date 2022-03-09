@@ -28,6 +28,8 @@ public class PlayerScript : MonoBehaviour
     internal float slideSpeed = 1;
     [SerializeField]
     internal float airControl = 1;
+    [SerializeField]
+    internal float dashSpeed = 1;
     #endregion
 
     #region Forces 
@@ -67,6 +69,10 @@ public class PlayerScript : MonoBehaviour
     #region Timers 
     [SerializeField]
     internal float jumpDelay = 1;
+    [SerializeField]
+    internal float dashLength = 0.2f;
+    [SerializeField]
+    internal float dashBufferLength = 0.2f;
     #endregion
 
     private void Start() 

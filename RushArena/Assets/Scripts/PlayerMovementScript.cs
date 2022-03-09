@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
@@ -10,21 +8,38 @@ public class PlayerMovementScript : MonoBehaviour
     
     private int extraJumps;
     private bool grounded;
-    private float fastFall;
+    private bool facingRight;
+    
+    
+    private float dashBufferCounter;
+    private bool isDashing;
+    private bool hasDashed;
+    private bool canDash => dashBufferCounter > 0f && !hasDashed;
     
     void Start()
     {
         extraJumps = 1;
+        
     }
 
     public void UpdateMovement()
-    {   
+    {
+        if (PS.inputScript.xInput == 1)
+        {
+            facingRight = true;
+        }
+        else if (PS.inputScript.xInput == -1)
+        {
+            facingRight = false;
+        }
+        
         #region Jump
         grounded = PS.collisionScript.IsGrounded();
 
         if (grounded)
         {
             extraJumps = 1;
+            hasDashed = false;
         }
         
         if (PS.inputScript.isSpaceDown) 
@@ -54,21 +69,40 @@ public class PlayerMovementScript : MonoBehaviour
         }
         #endregion
         
+        #region dash timer
+        if (PS.inputScript.isDashPressed)
+        {
+            dashBufferCounter = PS.dashBufferLength;
+        }
+        else
+        {
+            dashBufferCounter -= Time.deltaTime;
+        }
+        #endregion
     }
 
 
     public void FixedUpdateMovement()
     {
-        Debug.Log(extraJumps);
-        HorizontalMovement();
+        if (canDash)
+        {
+            StartCoroutine(Dash(PS.inputScript.xInput, PS.inputScript.yInput));
+        }
+        if (!isDashing)
+        {
+            PS.RB.useGravity = true;
+            HorizontalMovement();
+        }
+        
     }
 
 
 
     #region Fonctions 
     
-    private void HorizontalMovement()//,float lerpAmount)
+    private void HorizontalMovement()
     {
+        Debug.Log(PS.inputScript.xInput);
         float targetSpeed = PS.inputScript.xInput * PS.maxSpeed;
         float speedDif = targetSpeed - PS.RB.velocity.x;
         
@@ -117,13 +151,10 @@ public class PlayerMovementScript : MonoBehaviour
 
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accel, velPower) * Mathf.Sign(speedDif);
         //movement = Mathf.Lerp(PS.RB.velocity.x, movement, lerpAmount); 
-        // lerp sert à fluidifier les changements de vitesse surtout par ex en fin de dash
         
         PS.RB.AddForce(movement * Vector3.right); //vector3.right = vecteur unitaire horizontal 
     }
-
-
-    #region Jump
+    
     
     private void Jump()
     {
@@ -134,9 +165,44 @@ public class PlayerMovementScript : MonoBehaviour
             
         PS.RB.AddForce(Vector3.up * force, ForceMode.Impulse);
     }
-    
-    
-    #endregion
+
+
+    private IEnumerator Dash(float x, float y)
+    {
+        float dashStartTime = Time.time;
+        hasDashed = true;
+        isDashing = true;
+        
+        PS.RB.velocity = Vector3.zero;
+        PS.RB.useGravity = false;
+
+        Vector2 dir;
+
+        if (x != 0 || y != 0)
+        {
+            dir = new Vector2(x,y);
+        }
+        else
+        {
+            if (facingRight)
+            {
+                dir = new Vector2(1, 0);
+            }
+            else
+            {
+                dir = new Vector2(-1, 0);
+            }
+        }
+
+        while (Time.time < dashStartTime + PS.dashLength)
+        {
+            PS.RB.velocity = dir.normalized * PS.dashSpeed;
+            yield return null;
+        }
+
+        isDashing = false;
+    }
+
 }
 
    #endregion

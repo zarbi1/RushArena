@@ -11,11 +11,17 @@ public class PlayerInputScript : MonoBehaviour
     
     internal bool isLeftPressed;
     internal bool isRightPressed;
+    internal bool isUpPressed;
     internal bool isSpaceDown;
     internal bool isSpaceUp;
     internal bool isSpacePressed;
     internal bool isDownPressed;
+    internal bool isDashPressed;
+
+    
     internal int xInput = 0;
+    internal int yInput = 0;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -45,8 +51,14 @@ public class PlayerInputScript : MonoBehaviour
         isSpacePressed = Input.GetKey(KeyCode.Space);
 
         isDownPressed = Input.GetKey(KeyCode.DownArrow);
+
+        isUpPressed = Input.GetKey(KeyCode.UpArrow);
+
+        isDashPressed = Input.GetKey(KeyCode.E);
         
         #endregion
+        
+        
         
         if (isRightPressed == isLeftPressed)
         {
@@ -59,6 +71,16 @@ public class PlayerInputScript : MonoBehaviour
         else 
         {
             xInput = -1;
+        }
+
+
+        if (isUpPressed)
+        {
+            yInput = 1;
+        }
+        else
+        {
+            yInput = 0;
         }
     }
 }
