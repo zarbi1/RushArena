@@ -33,8 +33,6 @@ public class PlayerScript : MonoBehaviour
     #region Forces 
     [SerializeField]
     internal float jumpForce = 0;
-    [SerializeField]
-    internal float gravityForce = 1;
     #endregion
 
     #region transition variables 
@@ -69,8 +67,6 @@ public class PlayerScript : MonoBehaviour
     #region Timers 
     [SerializeField]
     internal float jumpDelay = 1;
-    [SerializeField]
-    internal float maxJumpTime = 1;
     #endregion
 
     private void Start() 

@@ -628,11 +628,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: deceleration
-      value: 1.4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: gravityForce
       value: 32.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+      propertyPath: fastFallSpeed
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: ground.m_Bits

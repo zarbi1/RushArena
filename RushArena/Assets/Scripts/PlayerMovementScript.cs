@@ -10,6 +10,7 @@ public class PlayerMovementScript : MonoBehaviour
     
     private int extraJumps;
     private bool grounded;
+    private float fastFall;
     
     void Start()
     {
@@ -17,7 +18,8 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     public void UpdateMovement()
-    {
+    {   
+        #region Jump
         grounded = PS.collisionScript.IsGrounded();
 
         if (grounded)
@@ -37,11 +39,20 @@ public class PlayerMovementScript : MonoBehaviour
                 extraJumps--;
             }
         }
+        #endregion
 
+        #region Fall Physics
+        if (PS.inputScript.isDownPressed)
+        {
+            PS.RB.AddForce(Vector3.down * PS.fastFallSpeed,ForceMode.VelocityChange);
+        }
+        
+        
         if (PS.RB.velocity.y < 0)
         {
             PS.RB.AddForce(Vector3.down * PS.fallSpeed,ForceMode.Acceleration);
         }
+        #endregion
         
     }
 
