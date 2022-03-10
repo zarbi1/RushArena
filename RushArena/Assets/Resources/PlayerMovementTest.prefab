@@ -137,7 +137,7 @@ MonoBehaviour:
     m_Bits: 64
   jumpDelay: 1
   dashLength: 0.2
-  dashBufferLength: 1
+  dashBufferLength: 0.2
 --- !u!114 &8038703926891157425
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -200,6 +200,7 @@ public class PlayerMovementScript : MonoBehaviour
             yield return null;
         }
 
+        PS.RB.velocity = Vector3.zero;
         isDashing = false;
     }
 

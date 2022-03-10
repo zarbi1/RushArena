@@ -8,12 +8,14 @@ public class CameraFollow : MonoBehaviour
 
     public float smoothTimeX;
     public float smoothTimeY;
+    public float cameraStartDistance;
 
     public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        transform.position = new Vector3(transform.position.x,transform.position.y, player.transform.position.z - cameraStartDistance);
     }
 
     // Update is called once per frame
