@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal float fallSpeed = 1;
     [SerializeField] 
-    internal float slideSpeed = 1;
+    internal float slideSpeed = 2;
     [SerializeField]
     internal float airControl = 1;
     [SerializeField]
@@ -66,9 +66,7 @@ public class PlayerScript : MonoBehaviour
     PhotonView view;
     #endregion
 
-    #region Timers 
-    [SerializeField]
-    internal float jumpDelay = 1;
+    #region Timers
     [SerializeField]
     internal float dashLength = 0.2f;
     [SerializeField]
@@ -97,7 +95,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (view.IsMine)
         {
-        movementScript.UpdateMovement();
+            movementScript.UpdateMovement();
         }
     }
 }

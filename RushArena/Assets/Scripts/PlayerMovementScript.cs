@@ -14,16 +14,29 @@ public class PlayerMovementScript : MonoBehaviour
     private float dashBufferCounter;
     private bool isDashing;
     private bool hasDashed;
+
+    #region private bool isSliding
+    private bool isSliding()
+    {
+        bool slopeFacingRight = floorAngle > 0;
+        return slopeFacingRight == facingRight && floorAngle != 0 && PS.inputScript.isDownPressed;
+    }
+    #endregion
+    
+    public float floorAngle;
     private bool canDash => dashBufferCounter > 0f && !hasDashed;
+    
     
     void Start()
     {
         extraJumps = 1;
-        
     }
 
     public void UpdateMovement()
     {
+        floorAngle = grounded ? PS.collisionScript.FloorAngle() : 0;
+        Debug.Log(floorAngle);
+        
         if (PS.inputScript.xInput == 1)
         {
             facingRight = true;
@@ -57,12 +70,13 @@ public class PlayerMovementScript : MonoBehaviour
         #endregion
 
         #region Fall Physics
-        if (PS.inputScript.isDownPressed)
+        //fastfall 
+        if (PS.inputScript.isDownPressed && !grounded)
         {
             PS.RB.AddForce(Vector3.down * PS.fastFallSpeed,ForceMode.VelocityChange);
         }
         
-        
+        //just making player fall faster 
         if (PS.RB.velocity.y < 0)
         {
             PS.RB.AddForce(Vector3.down * PS.fallSpeed,ForceMode.Acceleration);
@@ -90,7 +104,6 @@ public class PlayerMovementScript : MonoBehaviour
         }
         if (!isDashing)
         {
-            PS.RB.useGravity = true;
             HorizontalMovement();
         }
         
@@ -144,7 +157,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else // sinon cas où on continue dans la mm direction 
         {
-            velPower = PS.accelPower;
+            velPower = isSliding() ? PS.accelPower * PS.slideSpeed : PS.accelPower ;
         }
         
         #endregion
@@ -201,6 +214,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         PS.RB.velocity = Vector3.zero;
+        PS.RB.useGravity = true;
         isDashing = false;
     }
 

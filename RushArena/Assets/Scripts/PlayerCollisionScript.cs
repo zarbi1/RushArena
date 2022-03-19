@@ -36,20 +36,20 @@ public class PlayerCollisionScript : MonoBehaviour
     /**
      * <summary>checks if player is on flat terrain</summary>
      */
-    internal bool IsOnFlat()
+    internal float FloorAngle()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 1.5f, playerScript.ground))
         {
- 
+            int direction = Vector3.Angle(hit.normal, Vector3.right) < 90 ? 1 : -1;
             float angle = Vector3.Angle(hit.normal, Vector3.up);
-            Debug.Log("angle " + angle);
-            return angle != 0;
+            //Debug.Log("angle " + angle);
+            return angle * direction;
         }
 
-        return false;
+        return 0;
     }
     
 }
