@@ -30,6 +30,8 @@ public class PlayerScript : MonoBehaviour
     internal float airControl = 1;
     [SerializeField]
     internal float dashSpeed = 1;
+    [SerializeField]
+    internal float wallSlideDrag = 0;
     #endregion
 
     #region Forces 
@@ -51,6 +53,10 @@ public class PlayerScript : MonoBehaviour
     #endregion
 
     #region collision checks
+    [SerializeField]
+    internal Transform RightCheck;
+    [SerializeField]
+    internal Transform LeftCheck;
     [SerializeField]
     internal Transform groundCheck;
     [SerializeField]

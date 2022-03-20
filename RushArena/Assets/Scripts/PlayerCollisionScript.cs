@@ -6,7 +6,7 @@ public class PlayerCollisionScript : MonoBehaviour
 {
     
     [SerializeField]
-    PlayerScript playerScript;
+    PlayerScript PS;
 
     
     
@@ -29,7 +29,13 @@ public class PlayerCollisionScript : MonoBehaviour
     internal bool IsGrounded()
     {
         //si la sphère groundCheck entre en collision avec un objet ayant la layer ground alors True 
-        return Physics.CheckSphere(playerScript.groundCheck.position, 0.1f, playerScript.ground);
+        return Physics.CheckSphere(PS.groundCheck.position, 0.1f, PS.ground);
+    }
+
+    internal bool IsTouchingWall()
+    {
+        Vector3 checkPos = PS.movementScript.facingRight ? PS.RightCheck.position : PS.LeftCheck.position;
+        return Physics.CheckSphere(checkPos, 0.1f, PS.ground);
     }
     
     
@@ -41,7 +47,7 @@ public class PlayerCollisionScript : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1.5f, playerScript.ground))
+        if (Physics.Raycast(ray, out hit, 1.5f, PS.ground))
         {
             int direction = Vector3.Angle(hit.normal, Vector3.right) < 90 ? 1 : -1;
             float angle = Vector3.Angle(hit.normal, Vector3.up);

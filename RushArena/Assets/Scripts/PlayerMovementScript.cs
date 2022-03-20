@@ -8,8 +8,10 @@ public class PlayerMovementScript : MonoBehaviour
     
     private int extraJumps;
     private bool grounded;
-    private bool facingRight;
+    public bool facingRight;
     
+    private bool TouchingFront;
+    private bool wallSliding;
     
     private float dashBufferCounter;
     private bool isDashing;
@@ -48,15 +50,18 @@ public class PlayerMovementScript : MonoBehaviour
         
         #region Jump
         grounded = PS.collisionScript.IsGrounded();
-
+        TouchingFront = PS.collisionScript.IsTouchingWall();
+        
         if (grounded)
         {
             extraJumps = 1;
             hasDashed = false;
         }
-        
+
+        wallSliding = TouchingFront && !grounded && PS.inputScript.xInput != 0;
+
         if (PS.inputScript.isSpaceDown) 
-        {  
+        {
             if (grounded)
             {
                 Jump();
@@ -74,6 +79,15 @@ public class PlayerMovementScript : MonoBehaviour
         if (PS.inputScript.isDownPressed && !grounded)
         {
             PS.RB.AddForce(Vector3.down * PS.fastFallSpeed,ForceMode.VelocityChange);
+        }
+
+        if (wallSliding && PS.RB.velocity.y < 0)
+        {
+            PS.RB.drag = PS.wallSlideDrag;
+        }
+        else
+        {
+            PS.RB.drag = 0;
         }
         
         //just making player fall faster 
