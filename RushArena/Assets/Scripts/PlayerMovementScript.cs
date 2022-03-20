@@ -164,7 +164,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             velPower = PS.stopPower; 
         }
-        else if (Mathf.Abs(PS.RB.velocity.x) > 0 && (Mathf.Sign(targetSpeed) != Mathf.Sign(PS.RB.velocity.x)))
+        else if (Mathf.Abs(PS.RB.velocity.x) > 0 && Mathf.Sign(targetSpeed) != Mathf.Sign(PS.RB.velocity.x))
             //ici on gère le cas où on veut changer de direction 
         {
             velPower = PS.turnPower;

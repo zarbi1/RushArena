@@ -7,8 +7,6 @@ public class PlayerCollisionScript : MonoBehaviour
     
     [SerializeField]
     PlayerScript PS;
-
-    
     
     // Start is called before the first frame update
     void Start()
@@ -22,7 +20,6 @@ public class PlayerCollisionScript : MonoBehaviour
         
     }
 
-    
     /**
      * <summary>checks if player is touching the floor</summary>
      */
