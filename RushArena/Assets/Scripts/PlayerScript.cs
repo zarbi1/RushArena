@@ -32,11 +32,18 @@ public class PlayerScript : MonoBehaviour
     internal float dashSpeed = 1;
     [SerializeField]
     internal float wallSlideDrag = 0;
+    
+    [SerializeField]
+    internal float wallJumpAngle = 0.5f; 
+    //interpolation linéaire de vecteur up et right/left 
+    // => 0.5 = 45°, 0 = right/left, 1 = up   
     #endregion
 
     #region Forces 
     [SerializeField]
     internal float jumpForce = 0;
+    [SerializeField]
+    internal float wallJumpForce = 0;
     #endregion
 
     #region transition variables 

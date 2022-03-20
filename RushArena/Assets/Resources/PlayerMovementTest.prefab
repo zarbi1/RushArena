@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &266089042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266089043}
+  m_Layer: 0
+  m_Name: RightCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266089043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266089042}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.51, y: 0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6673858942920611752}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1026793885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1026793886}
+  m_Layer: 0
+  m_Name: LeftCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1026793886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026793885}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.51, y: 0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6673858942920611752}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6338246372257984652
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +98,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1865509691547280414}
+  - {fileID: 266089043}
+  - {fileID: 1026793886}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -122,22 +184,26 @@ MonoBehaviour:
   maxSpeed: 60
   fastFallSpeed: 0.3
   fallSpeed: 3
-  slideSpeed: 1
-  airControl: 0.8
+  slideSpeed: 1.18
+  airControl: 0.3
   dashSpeed: 30
+  wallSlideDrag: 3
+  wallJumpAngle: 0.6
   jumpForce: 20
+  wallJumpForce: 45
   accelPower: 1
   turnPower: 1.2
   stopPower: 1.3
   acceleration: 1.7
   deceleration: 1.52
+  RightCheck: {fileID: 266089043}
+  LeftCheck: {fileID: 1026793886}
   groundCheck: {fileID: 1865509691547280414}
   ground:
     serializedVersion: 2
     m_Bits: 64
-  jumpDelay: 1
   dashLength: 0.2
-  dashBufferLength: 0.2
+  dashBufferLength: 0.074
 --- !u!114 &8038703926891157425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22dd8f843f3b6945a79a9ab1bebb199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 715233547098378494}
+  PS: {fileID: 715233547098378494}
 --- !u!114 &1280888506279799209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PS: {fileID: 715233547098378494}
+  facingRight: 0
+  floorAngle: 0
 --- !u!54 &851038764631257742
 Rigidbody:
   m_ObjectHideFlags: 0

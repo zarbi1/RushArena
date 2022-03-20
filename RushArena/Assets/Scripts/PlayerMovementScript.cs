@@ -62,7 +62,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (PS.inputScript.isSpaceDown) 
         {
-            if (grounded)
+            if (grounded || wallSliding)
             {
                 Jump();
             }
@@ -185,12 +185,26 @@ public class PlayerMovementScript : MonoBehaviour
     
     private void Jump()
     {
+        float force;
+        Vector2 direction;
         
-        float force = PS.jumpForce;
+        if (wallSliding)
+        {
+            PS.RB.drag = 0;
+            force = PS.wallJumpForce;
+            direction = Vector2.Lerp(Vector2.right * -PS.inputScript.xInput,Vector2.up,PS.wallJumpAngle);
+        }
+        else
+        {
+            force = PS.jumpForce;
+            direction = Vector2.up;
+        }
+        
         if (PS.RB.velocity.y < 0) 
             force -= PS.RB.velocity.y;
-            
-        PS.RB.AddForce(Vector3.up * force, ForceMode.Impulse);
+        
+        PS.RB.AddForce(direction * force, ForceMode.Impulse);
+        
     }
 
 
