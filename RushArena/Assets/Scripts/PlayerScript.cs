@@ -68,11 +68,14 @@ public class PlayerScript : MonoBehaviour
     internal Transform groundCheck;
     [SerializeField]
     internal LayerMask ground;
+    [SerializeField]
+    internal TrailRenderer trail;
     #endregion
 
     #region player components
     internal Rigidbody RB;
     internal CapsuleCollider hitbox;
+    
     #endregion
 
     #region network variables

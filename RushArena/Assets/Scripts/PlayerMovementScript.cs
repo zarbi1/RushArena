@@ -32,6 +32,7 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         extraJumps = 1;
+        PS.trail.emitting = false;
     }
 
     public void UpdateMovement()
@@ -217,6 +218,8 @@ public class PlayerMovementScript : MonoBehaviour
         PS.RB.velocity = Vector3.zero;
         PS.RB.useGravity = false;
 
+        PS.trail.emitting = true;
+        
         Vector2 dir;
 
         if (x != 0 || y != 0)
@@ -244,6 +247,8 @@ public class PlayerMovementScript : MonoBehaviour
         PS.RB.velocity = Vector3.zero;
         PS.RB.useGravity = true;
         isDashing = false;
+
+        PS.trail.emitting = false;
     }
 
 }
