@@ -1,4 +1,5 @@
 using System.Collections;
+using DefaultNamespace;
 using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
@@ -27,7 +28,8 @@ public class PlayerMovementScript : MonoBehaviour
     
     public float floorAngle;
     private bool canDash => dashBufferCounter > 0f && !hasDashed;
-    
+
+    private float wallJumpCoyote;
     
     void Start()
     {
@@ -37,8 +39,9 @@ public class PlayerMovementScript : MonoBehaviour
 
     public void UpdateMovement()
     {
+        
         floorAngle = grounded ? PS.collisionScript.FloorAngle() : 0;
-        Debug.Log(floorAngle);
+        Debug.Log(wallJumpCoyote);
         
         if (PS.inputScript.xInput == 1)
         {
@@ -61,15 +64,31 @@ public class PlayerMovementScript : MonoBehaviour
 
         wallSliding = TouchingFront && !grounded && PS.inputScript.xInput != 0;
 
+        if (wallSliding)
+        {
+            wallJumpCoyote = PS.wallJumpCoyoteTime;
+        }
+        else
+        {
+            wallJumpCoyote -= Time.deltaTime;
+        }
         if (PS.inputScript.isSpaceDown) 
         {
-            if (grounded || wallSliding)
+            if (grounded)
             {
-                Jump();
+                Jump(PlayerJumpState.Default);
+            }
+            else if (wallSliding)
+            {
+                Jump(PlayerJumpState.WallSliding);
+            }
+            else if (wallJumpCoyote > 0)
+            {
+                Jump(PlayerJumpState.WallCoyote);
             }
             else if (extraJumps >= 1)
             {
-                Jump();
+                Jump(PlayerJumpState.Default);
                 extraJumps--;
             }
         }
@@ -184,21 +203,27 @@ public class PlayerMovementScript : MonoBehaviour
     }
     
     
-    private void Jump()
+    private void Jump(PlayerJumpState state)
     {
         float force;
         Vector2 direction;
-        
-        if (wallSliding)
-        {
-            PS.RB.drag = 0;
-            force = PS.wallJumpForce;
-            direction = Vector2.Lerp(Vector2.right * -PS.inputScript.xInput,Vector2.up,PS.wallJumpAngle);
-        }
-        else
-        {
-            force = PS.jumpForce;
-            direction = Vector2.up;
+
+        switch (state) {
+            case PlayerJumpState.WallSliding:
+                PS.RB.drag = 0;
+                force = PS.wallJumpForce;
+                direction = Vector2.Lerp(Vector2.right * -PS.inputScript.xInput,Vector2.up,PS.wallJumpAngle);
+                break;
+            
+            case PlayerJumpState.WallCoyote:
+                force = PS.wallJumpForce;
+                direction = Vector2.Lerp(Vector2.right * PS.inputScript.xInput,Vector2.up,PS.wallJumpAngle);
+                break;
+            
+            default:
+                force = PS.jumpForce;
+                direction = Vector2.up;
+                break;
         }
         
         if (PS.RB.velocity.y < 0) 

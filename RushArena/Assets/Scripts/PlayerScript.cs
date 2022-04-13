@@ -87,6 +87,8 @@ public class PlayerScript : MonoBehaviour
     internal float dashLength = 0.2f;
     [SerializeField]
     internal float dashBufferLength = 0.2f;
+    [SerializeField]
+    internal float wallJumpCoyoteTime = 0.1f;
     #endregion
 
     private void Start() 
