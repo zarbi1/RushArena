@@ -17,7 +17,8 @@ public class PlayerMovementScript : MonoBehaviour
     private float dashBufferCounter;
     private bool isDashing;
     private bool hasDashed;
-
+    private float DashTimer;
+    
     #region private bool isSliding
     private bool isSliding()
     {
@@ -27,7 +28,7 @@ public class PlayerMovementScript : MonoBehaviour
     #endregion
     
     public float floorAngle;
-    private bool canDash => dashBufferCounter > 0f && !hasDashed;
+    private bool canDash => dashBufferCounter > 0f && !hasDashed && DashTimer <= 0;
 
     private float wallJumpCoyote;
     
@@ -35,13 +36,14 @@ public class PlayerMovementScript : MonoBehaviour
     {
         extraJumps = 1;
         PS.trail.emitting = false;
+        DashTimer = 0;
     }
 
     public void UpdateMovement()
     {
         
         floorAngle = grounded ? PS.collisionScript.FloorAngle() : 0;
-        Debug.Log(wallJumpCoyote);
+        
         
         if (PS.inputScript.xInput == 1)
         {
@@ -138,6 +140,8 @@ public class PlayerMovementScript : MonoBehaviour
         }
         if (!isDashing)
         {
+            Debug.Log(DashTimer);
+            DashTimer -= Time.fixedDeltaTime;
             HorizontalMovement();
         }
         
@@ -149,7 +153,7 @@ public class PlayerMovementScript : MonoBehaviour
     
     private void HorizontalMovement()
     {
-        Debug.Log(PS.inputScript.xInput);
+
         float targetSpeed = PS.inputScript.xInput * PS.maxSpeed;
         float speedDif = targetSpeed - PS.RB.velocity.x;
         
@@ -236,6 +240,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private IEnumerator Dash(float x, float y)
     {
+        DashTimer = PS.dashCoolDown;
         float dashStartTime = Time.time;
         hasDashed = true;
         isDashing = true;
