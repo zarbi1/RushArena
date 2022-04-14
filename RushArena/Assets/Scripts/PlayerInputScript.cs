@@ -17,6 +17,7 @@ public class PlayerInputScript : MonoBehaviour
     internal bool isSpacePressed;
     internal bool isDownPressed;
     internal bool isDashPressed;
+    internal bool isThrowPressed;
 
     
     internal int xInput = 0;
@@ -55,7 +56,8 @@ public class PlayerInputScript : MonoBehaviour
         isUpPressed = Input.GetKey(KeyCode.UpArrow);
 
         isDashPressed = Input.GetKey(KeyCode.E);
-        
+
+        isThrowPressed = Input.GetKey(KeyCode.A);
         #endregion
         
         

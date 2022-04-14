@@ -346,6 +346,9 @@ MonoBehaviour:
   trail: {fileID: 2060561369}
   dashLength: 0.25
   dashBufferLength: 0.074
+  wallJumpCoyoteTime: 0.1
+  dashCoolDown: 5
+  TeleportAxe: {fileID: 0}
 --- !u!114 &8038703926891157425
 MonoBehaviour:
   m_ObjectHideFlags: 0

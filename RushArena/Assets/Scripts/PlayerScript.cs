@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using Photon.Pun;
 
@@ -15,6 +16,10 @@ public class PlayerScript : MonoBehaviour
     internal PlayerMovementScript movementScript;
     [SerializeField]
     internal PlayerCollisionScript collisionScript;
+    [SerializeField] 
+    internal PlayerActionScript actionScript;
+    [SerializeField]
+    internal PlayerAnimation animScript;
     #endregion
 
     #region movement variables
@@ -91,6 +96,12 @@ public class PlayerScript : MonoBehaviour
     internal float wallJumpCoyoteTime = 0.1f;
     [SerializeField]
     internal float dashCoolDown = 5f;
+    
+    #endregion
+    [SerializeField]
+    private GameObject TeleportAxe;
+    #region Objects
+    
     #endregion
 
     private void Start() 
