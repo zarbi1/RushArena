@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace DefaultNamespace
+public class PlayerActionScript : MonoBehaviour
 {
-    public class PlayerActionScript : MonoBehaviour
-    {
         [SerializeField] 
         PlayerScript PS;
-
-        private List<GameObject> Axes;
-
-        void Start()
-        {
-            Axes = new List<GameObject>();
-        }
+        [SerializeField]
+        internal GameObject TeleportAxe;
         
         public void UpdateActions()
         {
             if (PS.inputScript.isThrowPressed)
             {
-               // Axes.Add(Instantiate());   
+                GameObject a = Instantiate(TeleportAxe,PS.RB.position, Quaternion.identity);
             }
         }
         
-    }
 }

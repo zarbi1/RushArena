@@ -57,7 +57,7 @@ public class PlayerInputScript : MonoBehaviour
 
         isDashPressed = Input.GetKey(KeyCode.E);
 
-        isThrowPressed = Input.GetKey(KeyCode.A);
+        isThrowPressed = Input.GetKeyDown(KeyCode.A);
         #endregion
         
         

@@ -98,8 +98,7 @@ public class PlayerScript : MonoBehaviour
     internal float dashCoolDown = 5f;
     
     #endregion
-    [SerializeField]
-    private GameObject TeleportAxe;
+    
     #region Objects
     
     #endregion
@@ -120,13 +119,14 @@ public class PlayerScript : MonoBehaviour
         {
             movementScript.FixedUpdateMovement();
         }
-    }
+     }
     
     private void Update()
     {
         if (view.IsMine)
         {
             movementScript.UpdateMovement();
+            actionScript.UpdateActions();
         }
     }
 }

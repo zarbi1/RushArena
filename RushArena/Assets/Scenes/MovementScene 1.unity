@@ -22524,6 +22524,14 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+      propertyPath: TeleportAxe
+      value: 
+      objectReference: {fileID: 1730808456755093254, guid: 7726bfca88e44264aa83156a16e3cd16, type: 3}
+    - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+      propertyPath: actionScript
+      value: 
+      objectReference: {fileID: 1201365034}
+    - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: wallJumpCoyoteTime
       value: 0.23
       objectReference: {fileID: 0}
@@ -27897,6 +27905,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PS: {fileID: 1201365028}
   playerAsset: {fileID: 1496171167}
+--- !u!114 &1201365034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201365021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aee6042a5d4ba58c6ab170efbd2e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PS: {fileID: 1201365028}
+  TeleportAxe: {fileID: 1730808456755093254, guid: 7726bfca88e44264aa83156a16e3cd16, type: 3}
 --- !u!1 &1206786286
 GameObject:
   m_ObjectHideFlags: 0

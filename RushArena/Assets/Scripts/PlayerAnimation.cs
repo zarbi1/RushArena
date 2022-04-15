@@ -25,7 +25,6 @@ namespace DefaultNamespace
         public void Update()
         {
             playerAsset.transform.localScale = PS.movementScript.facingRight ? left : right;
-            Debug.Log(PS.RB.velocity.x );
             if (Math.Abs(PS.RB.velocity.x) < 2)
             {
                 animator.Play("idle");
@@ -34,6 +33,7 @@ namespace DefaultNamespace
             {
                 animator.Play("run");
             }
+            
         }
 
         

@@ -141,7 +141,6 @@ public class PlayerMovementScript : MonoBehaviour
         }
         if (!isDashing)
         {
-            Debug.Log(DashTimer);
             DashTimer -= Time.fixedDeltaTime;
             HorizontalMovement();
         }
