@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     public static bool isGamePaused = false;
+    public static bool IsthereSound = false;
 
     [SerializeField] private GameObject pauseMenu;
     void Update()
@@ -48,4 +49,13 @@ public class Pause : MonoBehaviour
         
         Debug.Log("Quit");
     }
+
+    /*public void SoundOff()
+    {
+        if (IsSoundOn)
+        {
+            SoundMa
+            IsSoundOn = false;
+        }
+    }*/
 }

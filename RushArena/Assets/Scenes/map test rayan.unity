@@ -527,6 +527,7 @@ GameObject:
   - component: {fileID: 218272730}
   - component: {fileID: 218272729}
   - component: {fileID: 218272728}
+  - component: {fileID: 218272732}
   m_Layer: 5
   m_Name: Canvaspourtimer
   m_TagString: Untagged
@@ -615,6 +616,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &218272732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218272727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad743f9f1de16d4583b8a1e25ba6d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 1869222020}
+  gameController: {fileID: 0}
 --- !u!1001 &224158357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2670,7 +2685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: dashSpeed
-      value: 40
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: dashLength
@@ -9312,6 +9327,7 @@ GameObject:
   - component: {fileID: 1869222019}
   - component: {fileID: 1869222021}
   - component: {fileID: 1869222020}
+  - component: {fileID: 1869222022}
   m_Layer: 5
   m_Name: TimerText
   m_TagString: Untagged
@@ -9380,6 +9396,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869222018}
   m_CullTransparentMesh: 1
+--- !u!114 &1869222022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869222018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad743f9f1de16d4583b8a1e25ba6d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!1001 &1879649396
 PrefabInstance:
   m_ObjectHideFlags: 0
