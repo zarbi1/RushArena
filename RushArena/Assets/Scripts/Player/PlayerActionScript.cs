@@ -11,8 +11,12 @@ public class PlayerActionScript : MonoBehaviour
         [SerializeField]
         internal GameObject TeleportAxe;
 
+        [SerializeField] 
+        internal float AxeThrowAngle = 0.5f;
+
         internal GameObject CurrentAxe;
         private bool AxeExists;
+        private Rigidbody AxeRB;
 
         private void Start()
         {
@@ -26,8 +30,17 @@ public class PlayerActionScript : MonoBehaviour
                 if (!AxeExists)
                 {
                     CurrentAxe = Instantiate(TeleportAxe,PS.RB.position, Quaternion.identity);
+                    int throwDirection = PS.movementScript.facingRight ? 1 : -1;
                     CurrentAxe.SendMessage("Init", PS.gameObject);
+                    CurrentAxe.SendMessage("InitRotation", throwDirection);
+                    
                     AxeExists = true;
+                    AxeRB = CurrentAxe.GetComponent<Rigidbody>();
+                    if (throwDirection == -1)
+                    {
+                        AxeRB.transform.Rotate(0,180,0);
+                    }
+                    AxeRB.AddForce(Vector2.Lerp(Vector2.right * throwDirection, Vector2.up, AxeThrowAngle) * PS.throwAxeForce, ForceMode.Impulse);
                 }
                 else
                 {
@@ -37,11 +50,13 @@ public class PlayerActionScript : MonoBehaviour
             }
         }
 
-
+        
         public void SwitchPositions(Rigidbody AxeRB)
         {
-            (PS.RB.position, AxeRB.position) = (AxeRB.position, PS.RB.position);
+            PS.RB.position = AxeRB.position;
+            AxeExists = false;
             Destroy(CurrentAxe);
-            AxeExists = false; 
         }
+
+        
 }

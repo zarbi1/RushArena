@@ -2085,6 +2085,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+      propertyPath: throwAxeForce
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 6338246372257984652, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: m_Name
       value: Player
