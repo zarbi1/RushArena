@@ -31401,6 +31401,7 @@ MonoBehaviour:
   wallJumpAngle: 0.6
   jumpForce: 20
   wallJumpForce: 45
+  throwAxeForce: 1
   accelPower: 1
   turnPower: 1.2
   stopPower: 1.3
@@ -31558,6 +31559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PS: {fileID: 715233547098378494}
   TeleportAxe: {fileID: 1730808456755093254, guid: 7726bfca88e44264aa83156a16e3cd16, type: 3}
+  AxeThrowAngle: 0.5
 --- !u!1 &9073758010356347826
 GameObject:
   m_ObjectHideFlags: 0
