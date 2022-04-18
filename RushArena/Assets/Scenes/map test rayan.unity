@@ -2752,6 +2752,10 @@ PrefabInstance:
       propertyPath: dashLength
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+      propertyPath: throwAxeForce
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 851038764631257742, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -2762,7 +2766,7 @@ PrefabInstance:
       objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 6338246372257984652, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: m_Name
-      value: PlayerMovementTest
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6673858942920611752, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: m_RootOrder
