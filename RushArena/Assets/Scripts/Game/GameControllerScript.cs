@@ -6,8 +6,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 public class GameControllerScript : MonoBehaviour
 {
-
-    public GameOverScreen gameOverScreen; //when lose = called
+    
     public Text GameStatus;
     public GameObject player;
 
@@ -19,25 +18,22 @@ public class GameControllerScript : MonoBehaviour
     private bool Ended = false;
 
     public Timer timer;
+    
 
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
         //wkaing up
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "Scene Map (test)")
-        {
-            Debug.Log("hola");
-            timer.ManualWakeUp();
-        }
+        
+        //start the timer
+        
         //send a message
         StartCoroutine(DisplayMessage("Rush !"));
+        
+        timer.ManualWakeUp();
     }
-
-    public void GameOver(int playerID)
-    {
-        gameOverScreen.Setup(playerID);
-    }
+    
 
 
 
@@ -77,10 +73,12 @@ public class GameControllerScript : MonoBehaviour
             if(LocalPLayerPos.x > OtherPlayerPos.x) //current player has won the game
             {
                 DisplayMessage("You WON");
+                SceneManager.LoadScene("Win Scene");
             }
             else //current player has lost the game
             {
                 DisplayMessage("You Lost"); 
+                SceneManager.LoadScene("GameOver Scene 1");
             }
         }
     }

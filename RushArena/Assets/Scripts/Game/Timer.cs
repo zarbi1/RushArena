@@ -11,6 +11,9 @@ public class Timer : MonoBehaviour
 
     public GameControllerScript gameController;
     private bool launch = false;
+    private float deltatTime;
+    private int min = 2;
+    private double sec = 30;
     
     // Start is called before the first frame update
     void Start()
@@ -20,27 +23,54 @@ public class Timer : MonoBehaviour
 
     public void ManualWakeUp()
     {
-        startTime = 10;   //strat time in sec
+        startTime = 30;   //strat time in sec
+        
+        Debug.Log("Started !");
         launch = true;
+
+        StartCoroutine(LaunchTimer());
+
     }
 
     // Update is called once per frame
-    void Update()
+    IEnumerator LaunchTimer()
     {
         if (launch)
         {
-            float t = startTime - Time.time;
+            /*
+            deltatTime = startTime - Time.time;
 
-            if (t <= 0)
+            if (deltatTime <= 0)
             {
 
                 gameController.TimesUp();    //call the GameController EndGame
-                return; //end the script here the game is over
+                yield return null;
             }
-            string minutes = ((int)t / 60).ToString();
-            string seconds = ((int)t % 60).ToString();
+            string minutes = ((int)deltatTime / 60).ToString();
+            string seconds = ((int)deltatTime % 60).ToString();
 
             timerText.text = minutes + ":" + seconds;
+            
+            Debug.Log("Here");
+            */
+            
+            timerText.text = min + ":" + sec;
+            yield return new WaitForSeconds(1.5f);
+
+            sec--;
+            if (sec <= 0)
+            {
+                if (min == 0)
+                {
+                    gameController.TimesUp();
+                    yield return null;
+                }
+                sec = 60;
+                min--;
+            }
+
+            StartCoroutine(LaunchTimer());
+
         }
        
         

@@ -14,7 +14,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SceneTest.unity
     guid: 1e28754a5b3f7b443ba51c0af7e36902
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scene Map (test).unity
     guid: db7a477c7eb9e0f448fe2edfb2286644
+  - enabled: 1
+    path: Assets/Scenes/map test rayan.unity
+    guid: 1fa00dbb55d031c4990394a8ac3ffa29
+  - enabled: 1
+    path: Assets/Scenes/Win Scene.unity
+    guid: 6d0890f2f563da746aa77ea161316a7e
+  - enabled: 1
+    path: Assets/Scenes/GameOver Scene 1.unity
+    guid: 66f5a380303251e438bbe23e5a61e6db
   m_configObjects: {}

@@ -22,6 +22,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("Scene Map (test)"); //when we want a "sync" scene we need to use the LoadLevele methode from photon, here the player is redirected to the player slecetion menu while wating for an other player
+        PhotonNetwork.LoadLevel("map test rayan"); //when we want a "sync" scene we need to use the LoadLevele methode from photon, here the player is redirected to the player slecetion menu while wating for an other player
     }
 }
