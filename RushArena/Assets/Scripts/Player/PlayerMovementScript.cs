@@ -27,6 +27,8 @@ public class PlayerMovementScript : MonoBehaviour
         return slopeFacingRight == facingRight && floorAngle != 0 && PS.inputScript.isDownPressed;
     }
     #endregion
+
+    public Vector3 LastCheckpointPos = new Vector3(0,0,0.667f);
     
     public float floorAngle;
     private bool canDash => dashBufferCounter > 0f && !hasDashed && DashTimer <= 0;
@@ -128,6 +130,16 @@ public class PlayerMovementScript : MonoBehaviour
         else
         {
             dashBufferCounter -= Time.deltaTime;
+        }
+        #endregion
+        
+        #region checkpoint
+
+
+        if (PS.inputScript.isTPressed && LastCheckpointPos.z != 0)
+        {
+            PS.RB.position = LastCheckpointPos;
+            PS.RB.velocity = Vector3.zero;
         }
         #endregion
     }
@@ -281,6 +293,12 @@ public class PlayerMovementScript : MonoBehaviour
         PS.trail.emitting = false;
     }
 
+    void SetNewCheckPoint(Vector3 pos)
+    {
+        Debug.Log(LastCheckpointPos);
+        LastCheckpointPos = pos;
+    }
+    
 }
 
    #endregion
