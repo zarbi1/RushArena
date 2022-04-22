@@ -26,11 +26,6 @@ namespace DefaultNamespace
         {
             playerAsset.transform.localScale = PS.movementScript.facingRight ? left : right;
 
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                animator.Play("Running Slide");
-            }
-
             if (Math.Abs(PS.RB.velocity.x) < 2)
             {
                 animator.Play("idle");
