@@ -298,7 +298,12 @@ public class PlayerMovementScript : MonoBehaviour
         Debug.Log(LastCheckpointPos);
         LastCheckpointPos = pos;
     }
-    
+
+
+    void ResetDash()
+    {
+        DashTimer = 0;
+    }
 }
 
    #endregion

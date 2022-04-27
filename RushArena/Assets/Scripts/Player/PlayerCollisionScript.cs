@@ -13,13 +13,7 @@ public class PlayerCollisionScript : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(3,7);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     /**
      * <summary>checks if player is touching the floor</summary>
      */

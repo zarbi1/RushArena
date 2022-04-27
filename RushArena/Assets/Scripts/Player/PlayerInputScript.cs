@@ -65,8 +65,6 @@ public class PlayerInputScript : MonoBehaviour
 
         #endregion
         
-        
-        
         if (isRightPressed == isLeftPressed)
         {
             xInput = 0;
@@ -79,8 +77,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             xInput = -1;
         }
-
-
+        
         if (isUpPressed)
         {
             yInput = 1;
