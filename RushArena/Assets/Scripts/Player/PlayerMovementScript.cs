@@ -18,7 +18,7 @@ public class PlayerMovementScript : MonoBehaviour
     private float dashBufferCounter;
     private bool isDashing;
     private bool hasDashed;
-    private float DashTimer;
+    public float DashTimer;
     
     #region private bool isSliding
     private bool isSliding()
@@ -31,7 +31,7 @@ public class PlayerMovementScript : MonoBehaviour
     public Vector3 LastCheckpointPos = new Vector3(0,0,0.667f);
     
     public float floorAngle;
-    private bool canDash => dashBufferCounter > 0f && !hasDashed && DashTimer <= 0;
+    public bool canDash => dashBufferCounter > 0f && !hasDashed && DashTimer <= 0;
 
     private float wallJumpCoyote;
     
