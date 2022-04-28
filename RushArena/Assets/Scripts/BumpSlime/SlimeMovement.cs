@@ -31,7 +31,7 @@ public class SlimeMovement : MonoBehaviour
     private Vector3 right = new Vector3(1, 1, -1);
     private Vector3 left = new Vector3(1, 1, 1);
     
-    void Start(){
+    /*oid Start(){
         latestDirectionChangeTime = 0f;
         calcuateNewMovementVector();
     }
@@ -55,7 +55,7 @@ public class SlimeMovement : MonoBehaviour
         //move enemy: 
         transform.position = new Vector3(transform.position.x + (movementPerSecond.x * Time.deltaTime), transform.position.y, transform.position.z);
  
-    }
+    }*/
     }
 
     // void Jump()
