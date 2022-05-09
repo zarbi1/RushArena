@@ -40,7 +40,7 @@ public class PlayerActionScript : MonoBehaviour
                     {
                         AxeRB.transform.Rotate(0,180,0);
                     }
-                    AxeRB.AddForce(Vector2.Lerp(Vector2.right * throwDirection, Vector2.up, AxeThrowAngle) * PS.throwAxeForce, ForceMode.Impulse);
+                    AxeRB.AddForce(Vector2.Lerp(Vector2.right * throwDirection, Vector2.up, AxeThrowAngle) * PS.throwAxeForce * (1+PS.RB.velocity.x/85 * throwDirection), ForceMode.Impulse);
                 }
                 else
                 {

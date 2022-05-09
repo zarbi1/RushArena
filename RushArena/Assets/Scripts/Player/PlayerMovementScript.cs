@@ -136,10 +136,18 @@ public class PlayerMovementScript : MonoBehaviour
         #region checkpoint
 
 
-        if (PS.inputScript.isTPressed && LastCheckpointPos.z != 0)
+        if (PS.inputScript.isTPressed)
         {
-            PS.RB.position = LastCheckpointPos;
-            PS.RB.velocity = Vector3.zero;
+            if (LastCheckpointPos.z != 0.667f) 
+            {
+                PS.RB.position = LastCheckpointPos;
+                PS.RB.velocity = Vector3.zero;
+            }
+            else
+            {
+                PS.RB.position = PS.StartingPoint.position;
+                PS.RB.velocity = Vector3.zero;
+            }
         }
         #endregion
     }
@@ -241,6 +249,7 @@ public class PlayerMovementScript : MonoBehaviour
                 direction = Vector2.up;
                 break;
         }
+        Debug.Log(state);
         
         if (PS.RB.velocity.y < 0) 
             force -= PS.RB.velocity.y;

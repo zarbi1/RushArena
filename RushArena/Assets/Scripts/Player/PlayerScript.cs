@@ -40,7 +40,8 @@ public class PlayerScript : MonoBehaviour
     
     [SerializeField]
     internal float wallJumpAngle = 0.5f;
-    
+
+    [SerializeField] internal Transform StartingPoint;
     //interpolation linéaire de vecteur up et right/left 
     // => 0.5 = 45°, 0 = right/left, 1 = up   
     #endregion

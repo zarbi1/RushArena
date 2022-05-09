@@ -6,6 +6,7 @@ using UnityEngine;
 public class TeleportAxe : MonoBehaviour
 {
     [SerializeField] internal float rotateSpeed = 1;
+    [SerializeField] private GameObject tpEffect; 
     
     private GameObject player;
     private Rigidbody AxeRB;
@@ -35,10 +36,11 @@ public class TeleportAxe : MonoBehaviour
     
 
     private void OnCollisionEnter()
-    {
-        player.SendMessage("SwitchPositions",AxeRB);
+    {   
+        Instantiate(tpEffect,transform.position, Quaternion.identity);
+        player.SendMessage("SwitchPositions", AxeRB);
     }
-
+    
 
     // Update is called once per frame
     
