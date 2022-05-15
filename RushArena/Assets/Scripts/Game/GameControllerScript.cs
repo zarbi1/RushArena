@@ -54,7 +54,7 @@ public class GameControllerScript : MonoBehaviour
             StartCoroutine(DisplayMessage("Time's UP !"));
             //now check players position
             var players = GameObject.FindGameObjectsWithTag("Player");
-            Debug.Log(players);
+            PhotonNetwork.Disconnect(); //disconnect from the server
             foreach(GameObject p in players)
             {
                 //check if it's us
@@ -73,6 +73,7 @@ public class GameControllerScript : MonoBehaviour
             if(LocalPLayerPos.x > OtherPlayerPos.x) //current player has won the game
             {
                 DisplayMessage("You WON");
+
                 SceneManager.LoadScene("Win Scene");
             }
             else //current player has lost the game

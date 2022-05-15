@@ -12,8 +12,8 @@ public class Timer : MonoBehaviour
     public GameControllerScript gameController;
     private bool launch = false;
     private float deltatTime;
-    private int min = 2;
-    private double sec = 30;
+    private int min = 0;
+    private double sec = 10;
     
     // Start is called before the first frame update
     void Start()
