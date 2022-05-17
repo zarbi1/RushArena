@@ -308,7 +308,20 @@ public class PlayerMovementScript : MonoBehaviour
         LastCheckpointPos = pos;
     }
 
-
+    void GoToCheckPoint()
+    {
+        if (LastCheckpointPos.z != 0.667f) 
+        {
+            PS.RB.position = LastCheckpointPos;
+            PS.RB.velocity = Vector3.zero;
+        }
+        else
+        {
+            PS.RB.position = PS.StartingPoint.position;
+            PS.RB.velocity = Vector3.zero;
+        }
+    }
+    
     void ResetDash()
     {
         DashTimer = 0;
