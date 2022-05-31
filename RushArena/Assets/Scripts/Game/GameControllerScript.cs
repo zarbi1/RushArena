@@ -23,9 +23,7 @@ public class GameControllerScript : MonoBehaviour
     // Start is called before the first frame update
     public void Awake()
     {
-        //wkaing up
-        Scene scene = SceneManager.GetActiveScene();
-        
+
         //start the timer
         
         //send a message
