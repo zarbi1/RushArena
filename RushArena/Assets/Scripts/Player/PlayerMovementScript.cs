@@ -20,13 +20,9 @@ public class PlayerMovementScript : MonoBehaviour
     private bool hasDashed;
     public float DashTimer;
     
-    #region private bool isSliding
-    private bool isSliding()
-    {
-        bool slopeFacingRight = floorAngle > 0;
-        return slopeFacingRight == facingRight && floorAngle != 0 && PS.inputScript.isDownPressed;
-    }
-    #endregion
+    
+    public bool isSliding => (floorAngle > 0) == facingRight && floorAngle != 0 && PS.inputScript.isDownPressed;
+    
 
     public Vector3 LastCheckpointPos = new Vector3(0,0,0.667f);
     
@@ -215,7 +211,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else // sinon cas où on continue dans la mm direction 
         {
-            velPower = isSliding() ? PS.accelPower * PS.slideSpeed : PS.accelPower ;
+            velPower = isSliding ? PS.accelPower * PS.slideSpeed : PS.accelPower ;
         }
         
         #endregion
@@ -249,7 +245,6 @@ public class PlayerMovementScript : MonoBehaviour
                 direction = Vector2.up;
                 break;
         }
-        Debug.Log(state);
         
         if (PS.RB.velocity.y < 0) 
             force -= PS.RB.velocity.y;
@@ -304,7 +299,6 @@ public class PlayerMovementScript : MonoBehaviour
 
     void SetNewCheckPoint(Vector3 pos)
     {
-        Debug.Log(LastCheckpointPos);
         LastCheckpointPos = pos;
     }
 

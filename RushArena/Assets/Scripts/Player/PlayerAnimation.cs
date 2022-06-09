@@ -12,10 +12,13 @@ namespace DefaultNamespace
         [SerializeField] internal ParticleSystem CanDashEffect;
 
         private bool CanDashEffectPlaying;
-        
+
+        private bool penched = false;
         private Vector3 right = new Vector3(1, 1, -1);
         private Vector3 left = new Vector3(1, 1, 1);
 
+        private float revertAngle;
+        
         private Animation animator;
 
         private Renderer CanDashEffectRenderer;
@@ -51,20 +54,38 @@ namespace DefaultNamespace
                     CanDashEffectRenderer.enabled = true; 
                 }
             }
-            
-            
-            Debug.Log(CanDashEffect.isPlaying);
-            
-            
-            if (Math.Abs(PS.RB.velocity.x) < 2)
+
+            if (!PS.movementScript.isSliding)
             {
-                animator.Play("idle");
-            }
-            else
-            {
-                animator.Play("run");
+                if (Math.Abs(PS.RB.velocity.x) < 2)
+                {
+                    animator.Play("idle");
+                }
+                else
+                {
+                    animator.Play("run");
+                }
             }
             
+
+            Debug.Log(PS.movementScript.isSliding);
+
+            
+            
+            if (PS.movementScript.isSliding && !penched)
+            {
+                animator.Stop();
+                penched = true;
+                playerAsset.transform.Rotate(Vector3.left,-35 * -PS.inputScript.xInput);
+                revertAngle = -(-35 * -PS.inputScript.xInput);
+            }
+
+            if (!PS.movementScript.isSliding && penched)
+            {
+                playerAsset.transform.Rotate(Vector3.left,revertAngle);
+                penched = false;
+                
+            }
         }
 
         void FireballPickup()

@@ -28,7 +28,6 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided");
         if (other.gameObject.layer == 3)
         {
             //Debug.Log("Collided");

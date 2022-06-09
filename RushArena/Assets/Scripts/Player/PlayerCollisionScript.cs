@@ -38,7 +38,7 @@ public class PlayerCollisionScript : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1.5f, PS.ground))
+        if (Physics.Raycast(ray, out hit, 2f, PS.ground))
         {
             int direction = Vector3.Angle(hit.normal, Vector3.right) < 90 ? 1 : -1;
             float angle = Vector3.Angle(hit.normal, Vector3.up);

@@ -18,11 +18,15 @@ public class PopBubble : MonoBehaviour
     public float uplift;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != 8)
+        if (other.gameObject.layer == 3)
         {
             other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position,explosionRadius,uplift);
             explosion.Play();
             Invoke(nameof(SelfDestroy), 0.3f);
+        }
+        else
+        {
+            SelfDestroy();
         }
     }
 
