@@ -24,10 +24,6 @@ public class PopBubble : MonoBehaviour
             explosion.Play();
             Invoke(nameof(SelfDestroy), 0.3f);
         }
-        else
-        {
-            SelfDestroy();
-        }
     }
 
     void SelfDestroy()
