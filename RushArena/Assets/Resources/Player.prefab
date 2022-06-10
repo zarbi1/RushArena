@@ -41462,6 +41462,7 @@ MonoBehaviour:
   PS: {fileID: 715233547098378494}
   TeleportAxe: {fileID: 1730808456755093254, guid: 7726bfca88e44264aa83156a16e3cd16, type: 3}
   AxeThrowAngle: 0.5
+  shortcut: {fileID: 0}
   AxePS: {fileID: 625987543}
 --- !u!1 &9073758010356347826
 GameObject:
