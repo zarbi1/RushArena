@@ -17688,30 +17688,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2060561367, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060561367, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060561369, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-      propertyPath: m_Time
-      value: 0.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-      propertyPath: slideSpeed
-      value: 1.46
-      objectReference: {fileID: 0}
     - target: {fileID: 715233547098378494, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: StartingPoint
       value: 
       objectReference: {fileID: 1172154201}
-    - target: {fileID: 4787267828324162937, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6338246372257984652, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
       propertyPath: m_Name
       value: Player
@@ -17760,10 +17740,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8971769200022948771, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-    - {fileID: 4787267828324162937, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
-    - {fileID: 5481446718920825976, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97da9dccdf748af4fb67af7c3cc71616, type: 3}
 --- !u!1 &1075158216
 GameObject:
@@ -33534,6 +33511,14 @@ MonoBehaviour:
   moveSpeed: 35
   leftLimit: {fileID: 613302677}
   rightLimit: {fileID: 1692803512}
+  moveDirection: {x: 0, y: 0, z: 0}
+  RB: {fileID: 0}
+  latestDirectionChangeTime: 0
+  characterVelocity: 2
+  movementDirection: {x: 0, y: 0}
+  movementPerSecond: {x: 0, y: 0}
+  right: {x: 1, y: 1, z: -1}
+  left: {x: 1, y: 1, z: 1}
 --- !u!136 &1680416581
 CapsuleCollider:
   m_ObjectHideFlags: 0
