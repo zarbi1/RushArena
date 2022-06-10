@@ -18,17 +18,26 @@ public class PlayerActionScript : MonoBehaviour
         private bool AxeExists;
         private Rigidbody AxeRB;
 
+        public ParticleSystem AxePS;
+
+        private float axeTimer;
+        
         private void Start()
         {
             AxeExists = false;
+            axeTimer = 0;
+            AxePS.Pause();
         }
 
         public void UpdateActions()
         {
             if (PS.inputScript.isThrowPressed)
             {
-                if (!AxeExists)
+                if (!AxeExists  && axeTimer <= 0)
                 {
+                    
+                    axeTimer = PS.axeCoolDown;
+                    
                     CurrentAxe = Instantiate(TeleportAxe,PS.RB.position, Quaternion.identity);
                     int throwDirection = PS.movementScript.facingRight ? 1 : -1;
                     CurrentAxe.SendMessage("Init", PS.gameObject);
@@ -48,6 +57,17 @@ public class PlayerActionScript : MonoBehaviour
                 }
                 
             }
+
+            bool up = axeTimer > 0;
+            axeTimer -= Time.deltaTime;
+
+            if (axeTimer <= 0 && up)
+            {
+                AxePS.Clear();
+                AxePS.time = 0;
+                AxePS.Play();
+                Invoke(nameof(PauseAxePS),0.9f);
+            }
         }
 
         
@@ -56,6 +76,12 @@ public class PlayerActionScript : MonoBehaviour
             PS.RB.position = AxeRB.position;
             AxeExists = false;
             Destroy(CurrentAxe);
+        }
+
+        void PauseAxePS()
+        {
+            AxePS.Pause();
+            AxePS.Clear();
         }
 
         

@@ -101,6 +101,8 @@ public class PlayerScript : MonoBehaviour
     internal float wallJumpCoyoteTime = 0.1f;
     [SerializeField]
     internal float dashCoolDown = 5f;
+    [SerializeField]
+    internal float axeCoolDown = 15f;
     
     #endregion
     
