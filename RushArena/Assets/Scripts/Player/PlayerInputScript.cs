@@ -19,6 +19,8 @@ public class PlayerInputScript : MonoBehaviour
     internal bool isDashPressed;
     internal bool isThrowPressed;
     internal bool isTPressed;
+    internal bool isTabPressed;
+    internal bool isUpressed;
 
 
     
@@ -63,6 +65,9 @@ public class PlayerInputScript : MonoBehaviour
         
         isTPressed = Input.GetKeyDown(KeyCode.F);
 
+        isTabPressed = Input.GetKey(KeyCode.Tab);
+
+        isUpressed = Input.GetKey(KeyCode.U);
         #endregion
         
         if (isRightPressed == isLeftPressed)

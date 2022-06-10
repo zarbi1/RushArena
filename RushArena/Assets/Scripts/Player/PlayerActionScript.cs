@@ -13,6 +13,8 @@ public class PlayerActionScript : MonoBehaviour
         [SerializeField] 
         internal float AxeThrowAngle = 0.5f;
 
+        public Transform shortcut;
+
         internal GameObject CurrentAxe;
         private bool AxeExists;
         private Rigidbody AxeRB;
@@ -30,6 +32,12 @@ public class PlayerActionScript : MonoBehaviour
 
         public void UpdateActions()
         {
+            if (PS.inputScript.isUpressed && PS.inputScript.isTabPressed)
+            {
+                PS.RB.position = shortcut.position;
+            }
+            
+            
             if (PS.inputScript.isThrowPressed)
             {
                 if (!AxeExists  && axeTimer <= 0)
